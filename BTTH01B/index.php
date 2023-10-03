@@ -1,11 +1,30 @@
+<?php 
+    try {
+      $conn = new PDO("mysql:host=localhost:4306;dbname=btth01_cse485", "root","");
+
+        $sql = "SELECT * FROM baiviet ORDER BY ma_bviet";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $data = $stmt->fetchAll();
+    } catch(PDOException $e) {
+      echo "Error: ".$e->getMessage();
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSIC</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <style>
     a{
@@ -23,37 +42,24 @@
         <center><p class="text-primary">TOP BÀI HÁT YÊU THÍCH</p></center>
     </div>
     <div class="container">
-    <div class="row ">
-      <div class="col-sm-3 border">
-        <a href="detail.php">
-          <img src="img/anh3.jpg" alt="anh3" class="img-fluid">Chuyện tình cây lá và gió
-        </a>
-      </div>
-      <div class="col-sm-3 border">
-        <a href="">
-          <img src="img/anh4.jpg" alt="anh4" class="img-fluid">Ơi cuộc sống mến thương
-        </a>
-      </div>
-      <div class="col-sm-3 border">
-        <a href="">
-          <img src="img/anh5.jpg" alt="anh5" class="img-fluid">Rồi ta sẽ ngắm pháo hoa cùng nhau
-        </a>
-      </div>
-      <div class="col-sm-3 border">
-        <a href="">
-          <img src="img/anh6.jpg" alt="anh6" class="img-fluid">Em yêu anh
-        </a>
-      </div>
-      <div class="row mt-4 ">
-      <div class="col-sm-3 border">
-        <a href="">
-          <img src="img/anh7.jpg" alt="anh7" class="img-fluid">Có ai hẹn hò cùng em chưa
-        </a>
+      <div class= "row row-cols-md-4 g-4">
+        <?php
+        foreach($data as $value){?>
+        <div class="col">
+          <div class="card">
+            <img src= "<?= $value['hinhanh'];?>" class="card-img-top" alt="...">
+            <a href="detail.php?ma_bviet=<?=$value['ma_bviet'];?>"><?=$value['ten_bhat'];?></a>
+
+          </div>
+        </div>
+        <?php }?>
       </div>
     </div>
-  </div>
+
     <?php 
         include "layout/footer.php";
     ?>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
 </html>
