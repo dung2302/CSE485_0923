@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:4306
--- Thời gian đã tạo: Th9 25, 2023 lúc 07:03 PM
+-- Thời gian đã tạo: Th10 03, 2023 lúc 01:29 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Cơ sở dữ liệu: `btth01_cse485`
---Create database btth01_cse485
+--
 
 -- --------------------------------------------------------
 
@@ -84,9 +84,31 @@ CREATE TABLE `theloai` (
 --
 
 INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`) VALUES
-(1, 'nhạc trữ tình'),
-(2, 'nhạc remix'),
-(3, 'nhạc trẻ');
+(1, ''),
+(2, ''),
+(3, '');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `uid` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `pass` varchar(50) NOT NULL,
+  `created_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`uid`, `username`, `email`, `pass`, `created_at`) VALUES
+(1, 'dung', 'dung@gmail.com', 'dung', '2023-10-01'),
+(2, 'hi', 'hi@gmail.com', 'hi', '2023-10-01');
 
 --
 -- Chỉ mục cho các bảng đã đổ
