@@ -1,3 +1,13 @@
+<?php
+//dich vu bao ve
+session_start();
+//kiem tra thong tin de bao vệ kiểm soát ra vào
+if(!isset($_SESSION['isLogin'])){
+    header("Location:/xampp/htdocs/BTTH01B/login.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
