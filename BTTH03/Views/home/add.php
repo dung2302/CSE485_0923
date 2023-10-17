@@ -1,31 +1,4 @@
 
-<?php
-if(isset($_POST['sbmSave'])) {
-    $tenSach= $_POST["tenSach"];
-    $namXuatBan = $_POST["namXuatBan"];
-    $idTacGia = $_POST["idTacGia"];
-    try{
-        $conn = new PDO("mysql:host=localhost:4306;dbname=quanlythuvien","root","");
-        if(!empty($tenSach)){
-            $sql = "INSERT INTO theloai(tenSach,namXuatBan, idTacGia) VALUES ('$tenSach', '$namXuatBan','$idTacGia')";
-            $stmt = $conn -> prepare($sql);
-            $stmt -> execute();
-
-            if ($stmt->rowCount() > 0) {
-                header("Location:index.php");
-            } else {
-                echo "Additional failures";
-            }
-        }
-        else echo "Nhập tên sach";
-    }
-    catch(PDOException $e){
-        $e ->getMessage();
-    }
-}
-
-?>
-
 
 
 <!DOCTYPE html>
