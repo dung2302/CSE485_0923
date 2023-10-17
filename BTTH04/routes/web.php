@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +24,7 @@ Route::get('/posts', [PostController::class,"getAllPosts"]);//->name('posts.hi')
 //Route::get('/index',[PostController::class,"index"]);
 //Route::get('/create',[PostController::class,"create"]);
 Route::resource("categories",CategoryController::class);
+Route::get('/',[CategoryController::class,"index"]);
+Route::get('/shoq',function(){
+    return view("categories.index");
+});
