@@ -1,18 +1,3 @@
-<?php 
-    try {
-      $conn = new PDO("mysql:host=localhost:4306;dbname=quanlythuvien", "root","");
-
-        $sql = "SELECT * FROM Sach ";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-
-        $sachs = $stmt->fetchAll();
-    } catch(PDOException $e) {
-      echo "Error: ".$e->getMessage();
-    }
-?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
