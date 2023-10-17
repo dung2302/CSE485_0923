@@ -1,40 +1,4 @@
 
-<?php
-if(isset($_POST['sbmSave'])) {
-    $id= $_POST["id"];
-    $tenSach= $_POST["tenSach"];
-    $namXuanBan = $_POST['namXuatBan'];
-    $namXuanBan =$_POST["idTacGia"];
-
-
-try{
-    //Buoc 1: Ket noi DBServer
-    $conn = new PDO("mysql:host=localhost:4306;dbname=btth01_cse485", "root", "");
-    //Buoc 2: Thuc hien truy van
-    $sql_check = "SELECT * FROM sach WHERE (tenSach='$tenSach') AND id != '$id'";
-    $stmt = $conn->prepare($sql_check);
-    $stmt->execute();
-    //Buoc 3: Xử lý kết quả
-    if($stmt->rowCount()>0){
-        header("Location:edit.php?error=existed");
-    }else{
-        $sql_update = "UPDATE sach set  tenSach='$tenSach',namXuatBan='$namXuatBan',idTacGia='$idTacGia', where id != '$id'";
-        $stmt = $conn->prepare($sql_update);
-        $stmt->execute();
-        $ma_tloai = $_GET["uid"];
-        if($stmt->rowCount() > 0){
-            header("Location:category.php?success=updated");
-        }
-    }
-    
-
-}catch(PDOException $e){
-    echo $e->getMessage();
-}
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
