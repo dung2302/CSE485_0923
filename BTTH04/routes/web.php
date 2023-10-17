@@ -25,6 +25,6 @@ Route::get('/posts', [PostController::class,"getAllPosts"]);//->name('posts.hi')
 //Route::get('/create',[PostController::class,"create"]);
 Route::resource("categories",CategoryController::class);
 Route::get('/',[CategoryController::class,"index"]);
-Route::get('/shoq',function(){
+Route::get('/show',function(){
     return view("categories.index");
 });
